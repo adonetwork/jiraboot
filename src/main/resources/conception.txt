@@ -1,0 +1,44 @@
+Projet Jiraboot
+Objectif : Développer une librairie pour accèder facilement à l'API REST JIRA
+
+Architecture hexagonale
+
+Package com.adonetwork.jiraboot.core : Toutes les DTO construites et transmises aux utilisateurs du module 
+Package com.adonetwork.jiraboot.ports : Les interfaces avec le noyeau
+Package com.adonetwork.jiraboot.adapters : Les implémentations des ports
+Package com.adonetwork.jiraboot.external : Les composants externes
+
+Package core
+------------
+Toutes les DTO seront à plat et représenteront les objets wrapper des objets JIRA. 
+
+Package ports
+-------------
+4 ports : projectPort, issuePort, requestPort, accessPort
+
+Package adapters
+----------------
+4 adapters : projectAdapter, issueAdapter, requestAdapter, accessAdapter
+chaque adapter implemente le port correspondant 
+
+Package external
+----------------
+JiraRepository qui va contenir la logique d'accès à l'API REST de JIRA
+
+Une classe de démarrage permettant d'initialiser une classe de service "jiraService" qui va contenir les méthodes d'accès aux modules. 
+
+Utiliser le framework Feign pour l'accès à l'API REST de JIRA. 
+
+
+Création d'un entete de classe : OK 
+
+Exemple : Récupérer la liste des projets JIRA
+DTO pour le projet
+Un port de ProjetPort avec la méthode qui récupère la liste des projets
+Un adapter ProjectAdapter qui implémente projectPort et qui va utiliser une classe JiraRepository. 
+Une classe de service appelée par le main pour récupérer la liste des projets. 
+
+
+
+
+

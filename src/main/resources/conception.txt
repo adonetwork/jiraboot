@@ -38,6 +38,9 @@ Un port de ProjetPort avec la méthode qui récupère la liste des projets
 Un adapter ProjectAdapter qui implémente projectPort et qui va utiliser une classe JiraRepository. 
 Une classe de service appelée par le main pour récupérer la liste des projets. 
 
+Fonctionnalités
+1) Récupérer la liste des projets d'une instance JIRA. 
+2) Récupérer les méta données d'un projet JIRA
 
 
 

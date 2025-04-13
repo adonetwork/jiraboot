@@ -4,8 +4,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean; 
 import feign.Logger;
-import feign.RequestInterceptor;
-import com.adonetwork.jiraboot.external.ApiKeyRequestInterceptor;
+import feign.auth.BasicAuthRequestInterceptor;
 
 /*
 * Jiraboot - Libriairie d'accès à l'API REST de JIRA
@@ -16,9 +15,14 @@ import com.adonetwork.jiraboot.external.ApiKeyRequestInterceptor;
 public class JiraConfiguration {
     /**
      * Classe de configuration d'accès à l'API REST de JIRA.
+     *  @author AdoNetwork
      */
-    @Value("${api.key:demo-api-key}")
-    private String apiKey;
+
+     @Value("${jira.login}")
+     private String login; // Identifiant de connexion à l'API JIRA
+
+     @Value("${jira.token}")
+     private String token; // Jeton d'authentification à l'API JIRA
 
     @Bean
     Logger.Level feignLoggerLevel() {
@@ -26,8 +30,8 @@ public class JiraConfiguration {
     }
 
     @Bean
-    public RequestInterceptor apiKeyRequestInterceptor() {
-        return new ApiKeyRequestInterceptor(apiKey);
+    public BasicAuthRequestInterceptor basicAuthRequestInterceptor() {
+         return new BasicAuthRequestInterceptor(login, token);
     }
 
 }

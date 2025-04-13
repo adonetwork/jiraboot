@@ -1,26 +1,31 @@
 package com.adonetwork.jiraboot.external;
 
-import org.springframework.stereotype.Repository;
-import java.util.List;
+import org.springframework.stereotype.Repository; 
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
-import com.adonetwork.jiraboot.external.JiraConfiguration;
+import org.springframework.web.bind.annotation.PathVariable;
+
 import com.adonetwork.jiraboot.core.Project;
+import com.adonetwork.jiraboot.core.ProjectList;
 
 /*
 * Jiraboot - Libriairie d'accès à l'API REST de JIRA
 * Copyright 2025 - AdoNetwork tous droits réservés. 
 */ 
 @Repository
-@FeignClient(value = "projects",
-  url = "https://jsonplaceholder.typicode.com/",
-  configuration = JiraConfiguration.class)
+@FeignClient(value = "${project.feign.config.name}", url = "${jira.feign.config.url}",configuration = JiraConfiguration.class)
 public interface ProjectRepository {
     /**
      * Classe d'accès aux données pour la gestion des projets JIRA.
+     * @author AdoNetwork
      */
-    @GetMapping("/project")
-    List<Project> getAllProjects();
 
+    // Liste des endpoints de l'API REST de JIRA
+    @GetMapping(value="/project/search", consumes = MediaType.APPLICATION_JSON_VALUE)
+    ProjectList getAllProjects();
+
+    @GetMapping(value="/project/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    Project getProjectById(@PathVariable String id); // Récupération d'un projet JIRA par son identifiant
 
 }

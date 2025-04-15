@@ -1,6 +1,5 @@
 package com.adonetwork.jiraboot.adapters;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.adonetwork.jiraboot.core.Project;

@@ -32,7 +32,7 @@ public class JirabootApplication {
 			List<Project> projects = this.jiraService.getAllProjects();
 			System.out.println("Nombre de projets JIRA : " + projects.size());
 			
-			Project project =this.jiraService.getProjectById("TST");
+			Project project =this.jiraService.getProjectById("BTS");
 
 
 			System.out.println("Project " +	project.getKey() + " : " + project.getName());
@@ -41,6 +41,7 @@ public class JirabootApplication {
 			System.out.println("Type : " + project.getType());
 			System.out.println("URL du projet : " + project.getUrl());
 			System.out.println("Categorie " + project.getCategory().getName() + " : " + project.getCategory().getDescription());
+			
 		};
 	}
 

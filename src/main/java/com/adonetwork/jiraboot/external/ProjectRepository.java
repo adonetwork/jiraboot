@@ -23,9 +23,9 @@ public interface ProjectRepository {
 
     // Liste des endpoints de l'API REST de JIRA
     @GetMapping(value="/project/search", consumes = MediaType.APPLICATION_JSON_VALUE)
-    ProjectList getAllProjects();
+    ProjectList getAllProjects() throws JiraMessageException;
 
     @GetMapping(value="/project/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
-    Project getProjectById(@PathVariable String id); // Récupération d'un projet JIRA par son identifiant
+    Project getProjectById(@PathVariable String id) throws JiraMessageException;
 
 }

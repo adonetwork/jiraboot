@@ -11,6 +11,7 @@ import java.net.InetAddress;
 import feign.Client;
 import feign.Logger;
 import feign.auth.BasicAuthRequestInterceptor;
+import feign.codec.ErrorDecoder;
 
 /*
 * Jiraboot - Libriairie d'accès à l'API REST de JIRA
@@ -51,6 +52,11 @@ public class JiraConfiguration {
       return new Client.Proxied(null, null, 
                  new Proxy(Proxy.Type.HTTP,
                      new InetSocketAddress(host, port)));
-  }
+    }
+
+    @Bean
+    public ErrorDecoder errorDecoder() {
+        return new JiraErrorDecoder();
+    }
 
 }

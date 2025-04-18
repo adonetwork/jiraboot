@@ -32,15 +32,17 @@ public class JirabootApplication {
 			List<Project> projects = this.jiraService.getAllProjects();
 			System.out.println("Nombre de projets JIRA : " + projects.size());
 			
-			Project project =this.jiraService.getProjectById("BTS");
+			Project project =this.jiraService.getProjectById("TOTO");
 
-
-			System.out.println("Project " +	project.getKey() + " : " + project.getName());
-			System.out.println("Description : " + project.getDescription());
-			System.out.println("URL : " + project.getUrl());
-			System.out.println("Type : " + project.getType());
-			System.out.println("URL du projet : " + project.getUrl());
-			System.out.println("Categorie " + project.getCategory().getName() + " : " + project.getCategory().getDescription());
+			if (project != null) {
+				System.out.println("Project " +	project.getKey() + " : " + project.getName());
+				System.out.println("Description : " + project.getDescription());
+				System.out.println("URL : " + project.getUrl());
+				System.out.println("Type : " + project.getType());
+				System.out.println("URL du projet : " + project.getUrl());
+				System.out.println("Categorie " + project.getCategory().getName() + " : " + project.getCategory().getDescription());
+			}
+			
 			
 		};
 	}

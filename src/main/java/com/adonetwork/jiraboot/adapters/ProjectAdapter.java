@@ -3,6 +3,8 @@ package com.adonetwork.jiraboot.adapters;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.adonetwork.jiraboot.core.IssueType;
+import com.adonetwork.jiraboot.core.IssueTypeList;
 import com.adonetwork.jiraboot.core.JiraBootException;
 import com.adonetwork.jiraboot.core.Project;
 import com.adonetwork.jiraboot.external.JiraMessageException;
@@ -59,6 +61,24 @@ public class ProjectAdapter implements ProjectPort {
             throw ExceptionMapper.transform(e);
         }
         return myProject;
+    }
+
+    @Override
+    public List<IssueType> getIssueTypesByProjectId(String id) throws JiraBootException {
+        log.info("Récupération de la liste des types de tickets d'un projet JIRA par l'identifiant : " + id);
+
+        List<IssueType> issues = new ArrayList<IssueType>();
+        try {
+            List<IssueTypeList> myList = myProjectRepository.getIssueTypesByProjectId(id).getHierarchy();
+            for (IssueTypeList issueTypeList : myList) {
+                issues.addAll(issueTypeList.getIssueTypes());
+            }   
+        } catch (JiraMessageException e) {
+            log.error("Erreur lors de la récupération des types de tickets d'un projet JIRA : {} ", e.getErrorName());
+            throw ExceptionMapper.transform(e);
+        } 
+
+        return issues;
     }
 
 }

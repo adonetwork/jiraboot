@@ -17,7 +17,8 @@ public class Project {
      */
 
      // Membres de la classe.
-    private String key; // Identifiant du projet
+    private String id; // Identifiant du projet
+    private String key; // Clé du projet
     private String name; // Nom du projet
     private String description; // Description du projet
     private String assigneeType; // Type d'assignation du projet

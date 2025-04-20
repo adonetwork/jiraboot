@@ -6,6 +6,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import com.adonetwork.jiraboot.core.IssuesHierarchy;
 import com.adonetwork.jiraboot.core.Project;
 import com.adonetwork.jiraboot.core.ProjectList;
 
@@ -28,4 +29,6 @@ public interface ProjectRepository {
     @GetMapping(value="/project/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     Project getProjectById(@PathVariable String id) throws JiraMessageException;
 
+    @GetMapping(value="/project/{id}/hierarchy", consumes = MediaType.APPLICATION_JSON_VALUE)
+    IssuesHierarchy getIssueTypesByProjectId(@PathVariable String id) throws JiraMessageException;
 }

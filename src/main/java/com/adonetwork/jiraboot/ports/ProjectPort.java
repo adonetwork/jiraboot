@@ -2,6 +2,7 @@ package com.adonetwork.jiraboot.ports;
 
 import java.util.List;
 
+import com.adonetwork.jiraboot.core.IssueType;
 import com.adonetwork.jiraboot.core.JiraBootException;
 import com.adonetwork.jiraboot.core.Project;
 
@@ -30,5 +31,13 @@ public interface ProjectPort {
      * @exception une instance de JiraBootException
      */
     public Project getProjectById(String id) throws JiraBootException; // Récupérer un projet par son identifiant
+
+    /**
+     * Retourne une liste de tous les types de tickets d'un projet JIRA
+     * @param id l'identifiant du projet
+     * @return une liste de types de tickets JIRA
+     * @exception une instance de JiraBootException
+     */
+    public List<IssueType> getIssueTypesByProjectId(String id) throws JiraBootException; // Récupérer tous les types de tickets d'un projet
 
 }

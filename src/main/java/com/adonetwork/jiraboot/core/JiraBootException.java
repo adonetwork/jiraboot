@@ -1,15 +1,15 @@
 package com.adonetwork.jiraboot.core;
 
-import lombok.Data;
-import lombok.extern.slf4j.Slf4j;
+import lombok.Getter;
+import lombok.Setter;
 
 /*
 * Jiraboot - Libriairie d'accès à l'API REST de JIRA
 * Copyright 2025 - AdoNetwork tous droits réservés. 
 */
 
-@Slf4j
-@Data
+@Getter
+@Setter
 public class JiraBootException extends Exception {
     /*
      * Exception JiraBootException

@@ -41,6 +41,9 @@ Une classe de service appelée par le main pour récupérer la liste des projets
 Fonctionnalités
 1) Récupérer la liste des projets d'une instance JIRA. 
 2) Récupérer les méta données d'un projet JIRA
+3) Récupérer les types de tickets d'un projet
+3) Récupérer une liste de tickets JIRA
+4) Récupérer un ticket d'un projet JIRA
 
 
 

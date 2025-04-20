@@ -5,9 +5,9 @@ import org.springframework.context.annotation.Configuration;
 import java.net.InetSocketAddress;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import java.net.Proxy;
-import java.net.InetAddress;
 import feign.Client;
 import feign.Logger;
 import feign.auth.BasicAuthRequestInterceptor;
@@ -48,6 +48,7 @@ public class JiraConfiguration {
     }
 
     @Bean
+    @ConditionalOnProperty(name = "jira.proxy.enabled", havingValue = "yes")
     public Client feignClient() {
       return new Client.Proxied(null, null, 
                  new Proxy(Proxy.Type.HTTP,

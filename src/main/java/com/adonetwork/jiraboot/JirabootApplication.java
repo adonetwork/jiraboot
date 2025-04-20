@@ -8,6 +8,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
+
+import com.adonetwork.jiraboot.core.IssueType;
 import com.adonetwork.jiraboot.core.Project;
 import lombok.extern.slf4j.Slf4j;
 
@@ -32,8 +34,8 @@ public class JirabootApplication {
 			List<Project> projects = this.jiraService.getAllProjects();
 			System.out.println("Nombre de projets JIRA : " + projects.size());
 			
-			Project project =this.jiraService.getProjectById("TOTO");
-
+			System.out.println("Récupérer les méta données d'un projet JIRA");
+			Project project =this.jiraService.getProjectById("TST");
 			if (project != null) {
 				System.out.println("Project " +	project.getKey() + " : " + project.getName());
 				System.out.println("Description : " + project.getDescription());
@@ -42,8 +44,10 @@ public class JirabootApplication {
 				System.out.println("URL du projet : " + project.getUrl());
 				System.out.println("Categorie " + project.getCategory().getName() + " : " + project.getCategory().getDescription());
 			}
-			
-			
+
+			System.out.println("Récupérer les types de tickets d'un projet JIRA");
+			List<IssueType> issueTypes = this.jiraService.getIssueTypesByProjectId(project.getId());
+			System.out.println("Nombre de types de tickets : " + issueTypes.size());	
 		};
 	}
 
